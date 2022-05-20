@@ -48,6 +48,10 @@ class Circulo{
   
   void moverMasculino(){
     y--;
+     if( y < 0-tam*2 ){
+       y = 0-tam*2;
+     }
+     println( y );
   }
   
   
