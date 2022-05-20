@@ -1,4 +1,5 @@
 class Fondo {
+  
   float ry = height-4000;
   float vel = 5;
   PImage ruta;
@@ -11,6 +12,7 @@ class Fondo {
   void display() {
     image( ruta, 0, ry);
   }
+
   void fondoLoop() {
     ry = ry+vel;
     if ( ry > 0 ) {
