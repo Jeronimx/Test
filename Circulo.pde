@@ -59,15 +59,12 @@ class Circulo {
       image( trofeo, width-155, y);
       trofeo.resize( 30,30 );
     } 
-
     println( y );
   }
   
   boolean colision(){
     return false;
-    //if( dist( x, y, xo, yo ) < 1 ){
-    //  return true;
-    //}
+    
   }
   
 }
