@@ -4,11 +4,10 @@ class Circulo {
   color c = color( #F57CEF );
   float xo = random( 0, width/2);
   float yo = 0;
-  boolean choque = false;
   PImage trofeo;
 
   Circulo( color c_, float x_, float y_ ) {
-    o = new Obstaculos( xo, yo );
+    o = new Obstaculos();
     trofeo = loadImage( "trofeo.png" );
     x = x_;
     y = y_;
@@ -62,9 +61,13 @@ class Circulo {
     println( y );
   }
   
-  boolean colision(){
-    return false;
-    
+  float posX(){
+    return x;
   }
   
+  float posY(){
+    return y;
+  }
+
+
 }

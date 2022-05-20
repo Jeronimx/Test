@@ -2,9 +2,9 @@ class Obstaculos {
   
   float x, y, tam;
 
-  Obstaculos( float x_, float y_) {
-    x = x_;
-    y = y_;
+  Obstaculos() {
+    x = random( 0, width/2);
+    y = 0;
     tam = random( 50, 70 );
   }
 
@@ -16,4 +16,13 @@ class Obstaculos {
   void mover() {
     y++;
   }
+  
+  float posX(){
+    return x;
+  }
+  
+  float posY(){
+    return y;
+  }
+  
 }
