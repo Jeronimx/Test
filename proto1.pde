@@ -7,6 +7,8 @@ void setup() {
 void draw() {
 
   background(120);
+  
   p.display();
   p.colision();
+  
 }

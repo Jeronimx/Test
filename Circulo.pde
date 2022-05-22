@@ -1,4 +1,5 @@
 class Circulo {
+  
   Obstaculos o;
   float x, y, tam, vel;
   color c = color( #F57CEF );
@@ -13,16 +14,19 @@ class Circulo {
     y = y_;
     c = c_;
     tam = 50;
-    vel = 5;
   }
 
   void display() {
     noStroke();
     fill( c );
     ellipse( x, y, tam, tam );
+    
   }
 
-  void mover() {
+  void mover( float vel_ ) {
+    
+    vel = vel_;
+    
     if ( keyPressed ) {
       if ( keyCode == UP ) {
         y = y-vel;
@@ -37,6 +41,7 @@ class Circulo {
         x = x+vel;
       }
     }
+    
   }
 
   void limites() {
@@ -49,6 +54,10 @@ class Circulo {
     if ( y > height ) {
       y = height;
     }
+    //if( y < 20 ){ y = 19; }
+    //if( y == 19 ){
+    //  y += vel
+    //}
   }
 
   void moverMasculino() {

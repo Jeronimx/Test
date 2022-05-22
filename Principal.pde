@@ -3,6 +3,7 @@ class Principal{
   Circulo m;
   Fondo r;
   Obstaculos o;
+  int velocidad = 5;
   
   Principal(){
     f = new Circulo( #F57CEF, 150, height-100 );
@@ -17,7 +18,7 @@ class Principal{
     r.fondoLoop();
     //Personaje Femenino
     f.display();
-    f.mover();
+    f.mover( velocidad );
     f.limites();
     //Personaje Masculino
     m.display();
@@ -25,6 +26,8 @@ class Principal{
     //Obstaculos
     o.display();
     o.mover();
+    
+    println( velocidad );
   }
   
   void colision(){
@@ -33,7 +36,9 @@ class Principal{
     
     if( d < 10 ){
       background(0);
-    }
+      velocidad = velocidad-1;
+    } if( velocidad <= 0 ){ velocidad = 1; }
+    
     
   }
   
