@@ -7,7 +7,7 @@ class Fondo{
   
   void dibujarMargen() {
     pushStyle();
-    fill(360);
+    fill(255);
     noStroke();
     //margen izquierdo
     rect(0, 0, 20, 600);

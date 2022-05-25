@@ -17,7 +17,7 @@ class Circulo {
     colorMode( RGB );
     fill( 0, 10);
     popStyle();
-    fill(360);
+    fill(255);
     ellipse(x, y, r*2, r*2);
     noFill();
     ellipse(x, y, tam-r/2, tam-r/2);
