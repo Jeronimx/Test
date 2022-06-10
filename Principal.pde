@@ -10,17 +10,17 @@ class Principal{
   int velocidad = 5;
   float x, y, tam;
   String estado = "estado1";
-  PImage ruta;
+  PImage ruta, barrera;
   
   Principal(){
     
     f = new Circulo( #F57CEF, width-300, height-50 );
-    m = new Circulo( #7C8CF5, width-100, height-50 );
-    o1 = new Obstaculos(0,450,150,50);
-    o2 = new Obstaculos(70,350,130,50);
-    o3 = new Obstaculos(40,250,50,50 );
-    o4 = new Obstaculos(0,150,100,50);
-    o5 = new Obstaculos(150,150,50,50 );
+    m = new Circulo( #00AAFC, width-100, height-50 );
+    o1 = new Obstaculos(0,470,150,30);
+    o2 = new Obstaculos(70,380,130,30);
+    o3 = new Obstaculos(40,300,100,30);
+    o4 = new Obstaculos(0,220,100,30);
+    o5 = new Obstaculos(100,150,100,30);
     ruta = loadImage( "ruta.jpg" );
     
     x = width/2;
@@ -31,9 +31,10 @@ class Principal{
   
   void display(){
     
+    //boton elegi un color
     float d1 = dist( mouseX, mouseY, x/2, y );
     //float d2 = dist( mouseX, mouseY, x*1.5, y );
-    if( estado.equals( "estado1" ) ){
+    if( estado.equals( "estado1" ) ){ //ELECCION
       background( 120 );
       textAlign( CENTER );
       textSize( 30 );
@@ -41,13 +42,14 @@ class Principal{
       text( "Elegí un color", width/2, 150);
       fill( #F57CEF );
       ellipse(x/2, y, tam, tam );
-      fill( #7C8CF5 );
+      fill( #00AAFC );
       ellipse(x*1.5, y, tam, tam );
     }
-    if( d1 < 50 && mousePressed ){
+    if( (d1) < 50 && mousePressed ){
       estado = "juego";
-    }
-    
+    } 
+  
+
     
     if( estado.equals( "juego" )){
     image( ruta, 0, 0,400,600);
@@ -59,15 +61,16 @@ class Principal{
     m.display();
     m.moverMasculino();
     //Obstaculos
-    o1.display(100);
-    o2.display(100);
-    o3.display(100);
-    o4.display(100);
-    o5.display(100);
+    o1.display();
+    o2.display();
+    o3.display();
+    o4.display();
+    o5.display();
 
     }
-    println( velocidad );
+    //println( velocidad );
   }
+  
   
  void colision(){
     
@@ -103,6 +106,12 @@ class Principal{
   
   }
   
+  void reset(){
+    estado = "estado1";
+    m.reset(width-100, height-50);
+    f.reset(width-300, height-50);
+    velocidad = 5;
+  }
   
 
 

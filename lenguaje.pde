@@ -7,7 +7,14 @@ void setup(){
 }
 
 void draw(){
-    p.display();
+  p.display();
   p.colision();
+  
 
+}
+
+void keyPressed(){
+  if( key == 'r' ){
+      p.reset();
+    }
 }

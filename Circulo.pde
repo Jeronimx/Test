@@ -73,7 +73,7 @@ class Circulo {
     text("Ganaste!", width/2+100 ,130);
     fill( #F57CEF);
     text("Perdiste!", width/2-100 ,130);
-    println( y );
+    //println( y );
     
     }
   }
@@ -84,6 +84,12 @@ class Circulo {
   
   float posY(){
     return y;
+  }
+  
+  void reset(float x_, float y_){
+    x = x_;
+    y = y_;
+    tam = 50;
   }
 
 }
