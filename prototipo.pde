@@ -3,6 +3,8 @@ import fisica.*;
 FWorld mundo;
 Personaje p1;
 Villano p2;
+Arcos a1,a2;
+String estado = "inicio";
 
 void setup(){
   
@@ -11,34 +13,62 @@ void setup(){
   
   mundo = new FWorld();
   mundo.setEdges();
+  mundo.setGravity(0,0);
   
   FCircle circulo = new FCircle(50);
   circulo.setName("circulo"); 
   circulo.setPosition( width/2, height/2 );
   circulo.setFill(255,0,0);
-  circulo.setRestitution(1);
-  circulo.setFriction(5);
+  circulo.setRestitution(1.2);
+  circulo.setBullet(true);
+  circulo.addTorque(12);
+
   mundo.add( circulo );
 
   
-  p1 = new Personaje(50,50);
+  p1 = new Personaje(30,70);
   p1.inicializar(100,height/2);
   mundo.add( p1 );
   
-  p2 = new Villano(50,50);
+  p2 = new Villano(30,70);
   p2.inicializar(width-100,height/2);
   mundo.add( p2 );
+  
+  a1 = new Arcos( 10, 150 );
+  a1.inicializar( 10, height/2, 255,0,0 );
+  
+  mundo.add( a1 );
+  
+  a2 = new Arcos( 10, 150 );
+  a2.inicializar( width-10, height/2, 0,0,255 );
+  mundo.add( a2 );
+
 }
 
 void draw(){
+  if( estado.equals("inicio") ){
+    textAlign( CENTER );
+    textSize(50);
+    background(0);
+    fill(255);
+    text( "PRESIONA ENTER PARA CONTINUAR", width/2, height/2 );
+    if( keyCode == ENTER ){
+      estado = "juego";
+    }
+  }
+  if( estado.equals("juego") ){
+    
   background(150);
-  
-  
+
   p1.actualizar();
   p2.actualizar();
   
   mundo.step();
   mundo.draw();
+  
+  }
+  
+  
 }
 
 //void contactStarted( FContact c){
