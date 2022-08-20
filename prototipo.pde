@@ -36,11 +36,11 @@ void setup(){
   mundo.add( circulo );
 
   
-  p1 = new Personaje(30,70);
+  p1 = new Personaje(80);
   p1.inicializar(100,height/2);
   mundo.add( p1 );
   
-  p2 = new Villano(30,70);
+  p2 = new Villano(80);
   p2.inicializar(width-100,height/2);
   mundo.add( p2 );
   
@@ -95,6 +95,7 @@ void contactStarted( FContact c){
   
   if( f1.getName() == "circulo" && f2.getName() == "arco1" || f1.getName() == "arco1" && f2.getName() == "circulo" ){
     gol1 ++;
+    circulo.adjustPosition( width/2, height/2 );
   } 
   
   if( f1.getName() == "circulo" && f2.getName() == "arco2" || f1.getName() == "arco2" && f2.getName() == "circulo" ){

@@ -1,10 +1,10 @@
-class Villano extends FBox{
+class Villano extends FCircle{
   
   boolean unPress, upPress, derPress, izqPress;
   float velocidad;
   
-  Villano( float x_, float h_){
-    super( x_, h_ );
+  Villano( float x_){
+    super( x_ );
     setDensity(10);
   }
   

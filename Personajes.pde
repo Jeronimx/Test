@@ -1,10 +1,10 @@
-class Personaje extends FBox{
+class Personaje extends FCircle{
   
   boolean unPress, upPress, derPress, izqPress;
   float velocidad;
   
-  Personaje( float x_, float h_){
-    super( x_, h_ );
+  Personaje( float x_){
+    super( x_ );
     setDensity(10);
   }
   
