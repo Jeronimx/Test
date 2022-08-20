@@ -2,22 +2,32 @@ import fisica.*;
 
 FWorld mundo;
 Personaje p1;
+FCircle circulo;
 Villano p2;
 Arcos a1,a2;
 String estado = "inicio";
+int gol, gol1;
+float cx,cy;
 
 void setup(){
   
   size( 1200,600 );
   Fisica.init(this);
   
+  gol = 0;
+  gol1 = 0;
+  
   mundo = new FWorld();
   mundo.setEdges();
   mundo.setGravity(0,0);
   
+  
+  cx = width/2;
+  cy = height/2;
+  
   FCircle circulo = new FCircle(50);
   circulo.setName("circulo"); 
-  circulo.setPosition( width/2, height/2 );
+  circulo.setPosition( cx,cy );
   circulo.setFill(255,0,0);
   circulo.setRestitution(1.2);
   circulo.setBullet(true);
@@ -36,11 +46,12 @@ void setup(){
   
   a1 = new Arcos( 10, 150 );
   a1.inicializar( 10, height/2, 255,0,0 );
-  
+  a1.setName("arco1");
   mundo.add( a1 );
   
   a2 = new Arcos( 10, 150 );
   a2.inicializar( width-10, height/2, 0,0,255 );
+  a2.setName("arco2");
   mundo.add( a2 );
 
 }
@@ -63,6 +74,10 @@ void draw(){
   p1.actualizar();
   p2.actualizar();
   
+  text( gol, 100, 100 );
+  text( gol1, width-100, 100 );
+  
+  
   mundo.step();
   mundo.draw();
   
@@ -71,13 +86,23 @@ void draw(){
   
 }
 
-//void contactStarted( FContact c){
-//  FBody f1 = c.getBody1();
-//  FBody f2 = c.getBody2();
+void contactStarted( FContact c){
+  FBody f1 = c.getBody1();
+  FBody f2 = c.getBody2();
   
-//  println( "cuerpo1 : " + f1.getName() );
-//  println( "cuerpo2 : " + f2.getName() );
-//}
+  println( "c1 : " + f1.getName() );
+  println( "c2 : " + f2.getName() );
+  
+  if( f1.getName() == "circulo" && f2.getName() == "arco1" || f1.getName() == "arco1" && f2.getName() == "circulo" ){
+    gol1 ++;
+  } 
+  
+  if( f1.getName() == "circulo" && f2.getName() == "arco2" || f1.getName() == "arco2" && f2.getName() == "circulo" ){
+    gol ++;
+  } 
+    
+  
+}
 
 void keyPressed(){
   if( key == 'w' ){

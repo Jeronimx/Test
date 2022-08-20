@@ -17,7 +17,7 @@ class Villano extends FBox{
     derPress = false;
     izqPress = false;
     
-    setName( "Personaje" );
+    setName( "Malo" );
     setPosition( x_, y_ );
     //setDamping(1);
     setRestitution(1);

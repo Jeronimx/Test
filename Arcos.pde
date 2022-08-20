@@ -10,6 +10,7 @@ class Arcos extends FBox{
   void inicializar( float x_, float y_, float a, float b, float c){
     setPosition( x_, y_ );
     setFill( a,b,c );
+    
   }
 
   
