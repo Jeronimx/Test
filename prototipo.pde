@@ -192,6 +192,7 @@ void draw(){
 // -------------------------------------------------------------------------------
                             //ESTADO GOL && JUEGO
   p.setStatic(false);
+  
   if( tiempoGola == true ){
     tiempoGol --;
       if( tiempoGol > 0 ){
@@ -265,11 +266,33 @@ void contactStarted( FContact c){
   if( f1.getName() == "circulo" && f2.getName() == "arco1" || f1.getName() == "arco1" && f2.getName() == "circulo" ){
     gol1 ++;
     tiempoGola = true;
+    
+    mundo.remove( pow );
+    mundo.remove( pow1 );
+    timerMultiply = 200;
+    tres = false;
+    
+    mundo.remove( o );
+    mundo.remove( o1 );
+    timerObs = 400;
+    obs = false;
+    
   } 
   
   if( f1.getName() == "circulo" && f2.getName() == "arco2" || f1.getName() == "arco2" && f2.getName() == "circulo" ){
     gol ++;
     tiempoGola = true;
+    
+    mundo.remove( pow );
+    mundo.remove( pow1 );
+    timerMultiply = 200;
+    tres = false;
+    
+    mundo.remove( o );
+    mundo.remove( o1 );
+    timerObs = 400;
+    obs = false;
+    
   } 
   
   if( gol == 3 || gol1 == 3 ){
