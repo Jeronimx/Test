@@ -7,6 +7,9 @@ Pelota p;
 Villano p2;
 Arcos a1,a2;
 String estado = "inicio";
+boolean goal = false;
+int tiempoGol = 50;
+boolean tiempoGola = false;
 int gol, gol1;
 //float cx,cy;
 
@@ -37,7 +40,7 @@ void setup(){
   //mundo.add( circulo );
   
   p = new Pelota(50);
-  p.inicializar(width/2, height/2);
+  p.inicializar(width/2, height/2 );
   p.setName("circulo"); 
   mundo.add( p );
   
@@ -72,12 +75,39 @@ void draw(){
       estado = "juego";
     }
   }
-  if( estado.equals("juego") ){
+  
+  if( estado.equals("juego") || estado.equals("gol") ){
     
   background(150);
 
   p1.actualizar();
   p2.actualizar();
+  
+  p.setStatic(false);
+  
+  if( tiempoGola == true ){
+    tiempoGol --;
+      if( tiempoGol > 0 ){
+        text( "GOOOOLL", width/2, height/2 );
+      }
+  }
+  
+  if( tiempoGol == 0 ){
+      estado = "gol";
+      goal = true;
+      tiempoGol = 50;
+      tiempoGola = false;
+    }
+  
+  if( estado.equals("gol") && goal == true ){
+    p.setVelocity( 0, 0 );
+    p.inicializar(width/2, height/2 );
+    p1.inicializar(100,height/2);
+    p2.inicializar(width-100,height/2);
+    goal = false;
+  }
+  
+  
     
   text( gol, 100, 100 );
   text( gol1, width-100, 100 );
@@ -93,14 +123,15 @@ void draw(){
     text( "Presiona R para reiniciar", width/2, height/2+50);
     gol = 0;
     gol1 = 0;
+    p.setVelocity( 0, 0 );
     //circulo.adjustPosition( cx,cy );
-    p.inicializar(width/2, height/2);
+    p.inicializar(width/2, height/2 );
+    p.setStatic(true);
     p1.inicializar(100,height/2);
     p2.inicializar(width-100,height/2);
     
     if( key == 'r' && estado.equals("fin") ){
       estado = "inicio";
-      p.inicializar(width/2, height/2);
     }
   }
   
@@ -113,15 +144,18 @@ void contactStarted( FContact c){
   
   println( "c1 : " + f1.getName() );
   println( "c2 : " + f2.getName() );
+  println( "tiempo de gol" + tiempoGol );
+  
+  
   
   if( f1.getName() == "circulo" && f2.getName() == "arco1" || f1.getName() == "arco1" && f2.getName() == "circulo" ){
     gol1 ++;
-    //cx=width/2;
-    //cy=height/2;
+    tiempoGola = true;
   } 
   
   if( f1.getName() == "circulo" && f2.getName() == "arco2" || f1.getName() == "arco2" && f2.getName() == "circulo" ){
     gol ++;
+    tiempoGola = true;
   } 
   
   if( gol == 3 || gol1 == 3 ){
@@ -165,6 +199,7 @@ void keyPressed(){
 }
 
 void keyReleased(){
+  
   if( key == 'w' ){
     p1.upPress = false;
   }
@@ -192,4 +227,5 @@ void keyReleased(){
   if( keyCode == LEFT ){
     p2.izqPress = false;
   }
+  
 }

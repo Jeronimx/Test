@@ -5,16 +5,19 @@ class Pelota extends FCircle{
    super( tam );
   }
   
-  void inicializar( float x, float y){
+  void inicializar( float x, float y ){
+    
     
     setPosition( x,y );
     setFill(255,0,0);
-    setRestitution(1.2);
-    setBullet(true);
-    addTorque(12);
+    setRestitution(1.1);
+    //setBullet(true);
+    //addTorque(12);
     
     
   }
+  
+  
   
   
 
