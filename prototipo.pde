@@ -2,8 +2,11 @@ import fisica.*;
 
 FWorld mundo;
 Obstaculos o, o1;
+
 float timerObs = 400;
 float timerMultiply = 200;
+float timerInvi = 200;
+
 float obsY = 500;
 float obsY1 = -500;
 Personaje p1;
@@ -21,6 +24,9 @@ boolean power = false;
 
 boolean tres = false;
 boolean power1 = false;
+
+boolean invisibilidad = false;
+boolean power2 = false;
 
 
 void setup(){
@@ -139,7 +145,7 @@ void draw(){
     }
 
   }
-  println( "timer" + timerMultiply );
+  println( "timer" + timerInvi );
   
 // -------------------------------------------------------------------------------
 
@@ -182,7 +188,26 @@ void draw(){
 // -------------------------------------------------------------------------------
                                 //Invisibilidad
                                 
-                                
+      if( invisibilidad ){
+     
+     if( power2 ){
+       p.setFill(255,0);
+       pow.setFill(255,0);
+       pow1.setFill(255,0);
+       power2 = false;
+     }
+     
+      timerInvi --;
+      
+      if( timerInvi == 0 ){
+        p.setFill(255,0,0);
+        pow.setFill(255,0,0);
+        pow1.setFill(255,0,0);
+        timerInvi = 200;
+        invisibilidad = false;
+      }
+      
+   }                          
 
   
 // -------------------------------------------------------------------------------
@@ -342,6 +367,11 @@ void keyPressed(){
     power1 = true;
   }
   
+  if( key == 'b' ){
+    invisibilidad = true;
+    power2 = true;
+  }
+  
 }
 
 void keyReleased(){
@@ -381,4 +411,9 @@ void keyReleased(){
   if( key == 'v' ){
     power1 = false;
   }
+  
+  if( key == 'b' ){
+    power2 = false;
+  }
+  
 }
