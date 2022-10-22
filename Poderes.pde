@@ -1,0 +1,10 @@
+
+void invisibilidad(){
+  
+}
+
+void multiplicacion(){
+  
+  
+  
+}
